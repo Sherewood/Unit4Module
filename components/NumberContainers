@@ -1,0 +1,23 @@
+import {View,Text} from 'react-native';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
+function NumberContainer(){
+    return 
+    <View Style ={styles.container}>
+        
+        <Text>children</Text>
+    </View>
+}
+export default NumberContainer;
+
+const styles =StyleSheet.creat({
+    container:{
+        borderWidth:4,
+        borderColor:Colors.accent500,
+        padding:24,
+        borderRadius:8,
+        margin:24,
+        alignItmes:'center',
+        justifyContent:'center'
+    },
+    numberText
+})
