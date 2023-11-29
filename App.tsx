@@ -11,7 +11,7 @@ export default function App() {
   }
   let screen= <StartGameScreen/>;
   if (userNumber){
-    screen= <GameScreen />
+    screen= <GameScreen/>
 
   }
   return <View >

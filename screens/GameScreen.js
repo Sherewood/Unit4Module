@@ -5,17 +5,18 @@ import NumberContainers from './components/NumberContainers';
 let minBoundary =1;
 let maxBounary =100;
 
-function generateRandomBetween (min,max,exclude){
-    const rndNum= Math.floor(Math.random() * (max-min))+min;
-    if (rndNum ===exclude){
-        return generateRandomBetween(min,max,exclude);
-    }
-    else{
-        return rndNum;
-    }
-}
+
 function GameScreen ({userNumber,onGameOver})
 {
+    function generateRandomBetween (min,max,exclude){
+        const rndNum= Math.floor(Math.random() * (max-min))+min;
+        if (rndNum ===exclude){
+            return generateRandomBetween(min,max,exclude);
+        }
+        else{
+            return rndNum;
+        }
+    }
     const initalGuess = generateRandomBetween (1,100,userNumber);
     const [currentGuess, setCurrentGuess]= userState(initalGuess);
     const [guessRounds,setGuessRounds]= useState([initalGuess]);
@@ -41,7 +42,7 @@ function GameScreen ({userNumber,onGameOver})
         return;
     }
     return(
-    <View style={stlyes.listContainer}>
+    <View style={stlyes.screen}>
         <Title>Oppenent's Guess</Title>
         <NumberContainers>{currentGuess}</NumberContainers>
         <FlateList
@@ -65,6 +66,7 @@ const stlyes =StyleSheet.create({
     screen: {
         flex:1,
         padding:24,
+        alignItems:'center'
     },
     instructionText:{
         marginBottom:12,
