@@ -1,14 +1,19 @@
-import {userState} from 'react';
-import {Text} from 'react-native';
-import Title from './components/Title';
-import NumberContainers from './components/NumberContainers';
+import React, {useState,useEffect} from 'react';
+import {Alert, FlatList, Text, View,StyleSheet} from 'react-native';
+import Title from '../components/Title';
+import NumberContainer from '../components/NumberContainers';
 let minBoundary =1;
 let maxBounary =100;
 
+type GameScreenProps={
+    userNumber:number,
+    onGameOver: ()=>void,
 
-function GameScreen ({userNumber,onGameOver})
+}
+
+function GameScreen ({userNumber,onGameOver}:GameScreenProps)
 {
-    function generateRandomBetween (min,max,exclude){
+    function generateRandomBetween (min: number,max: number,exclude: number){
         const rndNum= Math.floor(Math.random() * (max-min))+min;
         if (rndNum ===exclude){
             return generateRandomBetween(min,max,exclude);
@@ -18,7 +23,7 @@ function GameScreen ({userNumber,onGameOver})
         }
     }
     const initalGuess = generateRandomBetween (1,100,userNumber);
-    const [currentGuess, setCurrentGuess]= userState(initalGuess);
+    const [currentGuess, setCurrentGuess]= useState(initalGuess);
     const [guessRounds,setGuessRounds]= useState([initalGuess]);
     useEffect(() =>{
         if (currentGuess ===userNumber){
@@ -30,7 +35,7 @@ function GameScreen ({userNumber,onGameOver})
         maxBounary=100;
 
     },[]);
-    function nectGueesHandler(direction) {
+    function nectGueesHandler(direction:'lower'|'greater') {
         if (
             (direction === 'lower' && currentGuess < userNumber) ||
             (direction === 'greater' && currentGuess >userNumber)
@@ -44,16 +49,19 @@ function GameScreen ({userNumber,onGameOver})
     return(
     <View style={stlyes.screen}>
         <Title>Oppenent's Guess</Title>
-        <NumberContainers>{currentGuess}</NumberContainers>
-        <FlateList
+        <NumberContainer children={currentGuess} ></NumberContainer>
+        <FlatList
         data={guessRounds}
         renderItem={(itemData) =>(
-            <GuessLogItem
-            roundNumber= {guessRoundsListLength - itemData.index}
-            guess = {itemData.item}
-            />
+            <View>
+                <Text>Fart</Text>
+            </View>
+           // <GuessLogItem
+           // roundNumber= {guessRoundsListLength - itemData.index}
+           // guess = {itemData.item}
+           // />
         )}
-        keyExtractor= {(item) => item}
+        //keyExtractor= {(item) => item}
 
     />
     </View>

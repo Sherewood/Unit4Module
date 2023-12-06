@@ -1,9 +1,17 @@
 import {useState} from 'react';
-import {TextInput,Button,Alert} from 'react-native';
+import {StyleSheet,TextInput,Button,Alert,useWindowDimensions, View} from 'react-native';
 import PrimaryButton from '../components/PrimaryButton';
-function StartGameScreen(onPickedNumber){
+import Colors from '../constants/colors';
+type StartGameScreenProp={
+    onPickedNumber: (itm:number)=>void,
+    numberInputHandler: (text:string)=>void,
+////onChangeText={StartGameScreen.numberInputHandler} on line 33 
+}
+function StartGameScreen({onPickedNumber}:StartGameScreenProp){
     const [enteredNumber, setEnteredNumber]= useState('');
-    function numberInputHandler(enteredText){
+
+    const {width,height}= useWindowDimensions();
+    function numberInputHandler(enteredText:string){
             setEnteredNumber(enteredText);
     }
     function resetInputHandler(){
@@ -16,32 +24,34 @@ function StartGameScreen(onPickedNumber){
                 return;
 
             }
-            conPickNumber(chosenNumber);
+            onPickedNumber(chosenNumber);
     }
+
+    const marginTopDistance= height<400 ? 30 :100;
     return(
-     <View style={styles.inputContainer}>
-        <TextInput style={styles.numberInput} 
-        maxLength={2} 
-        keyboardAppearance='number-pad' 
-        autoCapitalize='none'
-        autoComplete={false}
-        onChangeText={numberInputHandler}
-        value={enteredNumber}
-         />
-         <View style={styles.buttonsContainer}>
+     <View style={[stlyes.rootContainer, {marginTop: marginTopDistance}]}>
+        <TextInput style={stlyes.numberInput} maxLength={2}  keyboardAppearance='light' autoCapitalize='none'   value={enteredNumber}></TextInput>
+         <View style={stlyes.buttonsContainer}>
             <View>
-            <PrimaryButton onPress={resetInputHandler}>Reset</PrimaryButton>
+            <PrimaryButton pressHandler={resetInputHandler}>Reset</PrimaryButton>
             </View>
-            <View style={styles.buttonContainer}>
-            <PrimaryButton onPress= {confirmInputHandler}>Confirm</PrimaryButton>
+            <View style={stlyes.buttonContainer}>
+            <PrimaryButton pressHandler= {confirmInputHandler}>Confirm</PrimaryButton>
             </View>
         </View>
     </View>
     );
 }
 
+
 export default StartGameScreen;
+//const deviceHeight = Dimensions.get('window').height;
 const stlyes= StyleSheet.create({
+    rootContainer:{
+        flex: 1,
+        //marginTop: deviceHeight <400 ? 30 :100,
+        alignItems:'center',
+    },
     inputContainer: {
         justifyContent: 'center',
         alignItems:'center',
@@ -49,7 +59,7 @@ const stlyes= StyleSheet.create({
         marginTop:100,
         marginHorizontal:24 ,
         padding: 16,
-        backgroundColor:'#72063c',
+        backgroundColor:Colors.primary500,
         borderRadius: 8,
         elevation: 4,
         shadowColor: 'blue',
@@ -61,9 +71,9 @@ const stlyes= StyleSheet.create({
         height: 50,
         width: 50,
         fontSize:32,
-        borderBottomColor:'#dd52f',
+        borderBottomColor:Colors.primary400,
         borderBottomWidth: 2,
-        color: '#dd52f',
+        color: Colors.primary400,
         marginVertical: 8,
         fontWeight: 'bold',
         textAlign:'center',

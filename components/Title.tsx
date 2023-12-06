@@ -1,6 +1,10 @@
-import {Text} from 'react-native';
-function Title(children){
-    return <Text style = {StyleSheet.title}>{children}</Text>
+import {Text,StyleSheet} from 'react-native';
+type Titleprops={
+    children:string,
+
+}
+function Title(children:Titleprops){
+    return <Text style = {styles.title}>{children.children}</Text>
 }
 
 export default Title;

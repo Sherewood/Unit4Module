@@ -1,11 +1,16 @@
 import {View,Text, StyleSheet,Dimensions} from 'react-native';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
-function NumberContainer(){
-    return 
-    <View Style ={styles.container}>
+type NumberContainerProp={
+    children:number,
+}
+
+function NumberContainer(props:NumberContainerProp){
+    return (
+    <View style ={styles.container}>
         
-        <Text style={styles.numberText}>children</Text>
+        <Text style={styles.numberText}>{props.children}</Text>
     </View>
+    )
 }
 export default NumberContainer;
 const deviceWidth= Dimensions.get('window').width;
