@@ -13,10 +13,7 @@ type GameOverScreenProps={
 }
 function GameOverScreen (props:GameOverScreenProps)
 {
-    function NewGame():void {
-        console.log('asdkasl');
-    }
-    
+
 
 return (
     <View style={stlyes.rootContainer}>
@@ -24,7 +21,7 @@ return (
         <View style ={stlyes.imageContainer}>
             <Image 
             style={stlyes.image}
-            source={require('../assets/images/icon.png')}
+            source={require('../assets/icon.png')}
             />
         </View>
         <Text style={stlyes.summaryText}>
@@ -32,7 +29,7 @@ return (
             round to guess the number{' '}
             <Text style= {stlyes.highlight}>{props.userNumber}</Text>
         </Text>
-        <PrimaryButton pressHandler={NewGame} >Start New Game </PrimaryButton>
+        <PrimaryButton pressHandler={props.onStartNewGame} >Start New Game </PrimaryButton>
     </View>
 )
 }
@@ -41,7 +38,7 @@ export default GameOverScreen;
 
 const stlyes =StyleSheet.create({
     rootContainer:{
-        flex:1,
+       // flex:1,
         padding:24,
         justifyContent:'center',
         alignItems:'center',

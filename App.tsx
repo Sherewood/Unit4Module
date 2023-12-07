@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, ImageBackground } from 'react-native';
 import StartGameScreen from './screens/StartGameScreens';
 import GameScreen from './screens/GameScreen';
 import Colors from './constants/colors';
@@ -12,31 +12,54 @@ type AppProp={
 }
 export default function App(props:AppProp) {
 
-  const [userNumber, setUserNumber] =useState();
-  function pickedNumberHandler(pickedNumber:any){
+  const [userNumber, setUserNumber] =useState(0);
+  const [gameIsOver, setGameIsOver]= useState(true);
+  function pickedNumberHandler(pickedNumber:number){
+      console.log('ads');
       setUserNumber(pickedNumber);
+      setGameIsOver(false);
   }
-  let screen= <StartGameScreen onPickedNumber={function (itm: number):void{}} numberInputHandler={pickedNumberHandler} />;
+  function numberInputHandler(){
+    console.log('Handled');
+  }
+  function PickedNumer(){
+    setUserNumber
+  }
+  function GameOver(){
+    setGameIsOver(true);
+  }
+  function NewGame(){
+    setGameIsOver(false);
+    setUserNumber(0);
+  }
+  let screen= <StartGameScreen onPickedNumber={pickedNumberHandler} />;
   if (userNumber){
-    screen= <GameScreen userNumber={0} onGameOver={function (): void {
-      throw new Error('Function not implemented.');
-    } } {...props.userNumber, GameOverScreen} />
+   // console.log(userNumber);
+    screen= <GameScreen userNumber={userNumber} onGameOver={GameOver}/>
 
   }
-  return( <View >
-<SafeAreaView style={styles.rootScreen}>
-    <StartGameScreen onPickedNumber={pickedNumberHandler} numberInputHandler={function (text: string): void {
-        throw new Error('Function not implemented.');
-      } } />
+  if (gameIsOver && userNumber){
+      screen= <GameOverScreen userNumber={userNumber} onGameOver={GameOver} onStartNewGame={NewGame}></GameOverScreen>
+  }
+  return( 
+    
+  <ImageBackground source={require("./assets/darkmagiciangirl.png")} resizeMode="cover" style={styles.rootScreen} >
+  <SafeAreaView  >
+   
+    {screen}
     
   </SafeAreaView>
-  </View>
+  </ImageBackground>
+ 
   )
 }
 
 const styles = StyleSheet.create({
   rootScreen:{
     flex:1,
-    backgroundColor: Colors.primary400,
+    backgroundColor:Colors.primary200,
   },
+  ImageBackDrop:{
+    opacity:.45,
+  }
 });

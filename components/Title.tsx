@@ -1,4 +1,5 @@
 import {Text,StyleSheet} from 'react-native';
+import Colors from '../constants/colors';
 type Titleprops={
     children:string,
 
@@ -16,6 +17,7 @@ const styles =StyleSheet.create({
         color:'#ddb52f',
         textAlign: 'center',
         borderWidth:2,
+        backgroundColor:Colors.primary200,
         borderColor: '#ddb52f',
         padding:12,
         maxWidth:'80%',
