@@ -33,6 +33,7 @@ function GameScreen ({userNumber,onGameOver}:GameScreenProps)
     const [guessRounds,setGuessRounds]= useState([initalGuess]);
     useEffect(() =>{
         if (currentGuess ===userNumber){
+            console.log("PAYPAYA");
             onGameOver();
         }
     },[currentGuess,userNumber,onGameOver]);
@@ -52,12 +53,12 @@ function GameScreen ({userNumber,onGameOver}:GameScreenProps)
         else if(direction=='greater'){
             minBoundary=currentGuess+1;
         }
-        if (minBoundary ==userNumber || maxBounary == userNumber){console.log("congraturaisins");}
-        else{
-            const newGuess = generateRandomBetween (minBoundary,maxBounary,userNumber);
+            console.log(minBoundary+ " "+ maxBounary+" "+ currentGuess);
+            const newGuess = generateRandomBetween (minBoundary,maxBounary,currentGuess);
             setCurrentGuess(newGuess);
-            console.log(minBoundary+ " "+ maxBounary);
-        }
+            if (currentGuess!=userNumber){setCurrentGuess(currentGuess+1)}
+            console.log("NEW "+minBoundary+ " "+ maxBounary+" "+ currentGuess);
+        
 
 
 

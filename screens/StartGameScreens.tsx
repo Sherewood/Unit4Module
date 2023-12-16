@@ -2,6 +2,7 @@ import {useState} from 'react';
 import {StyleSheet,TextInput, Alert,useWindowDimensions, View,Text,ImageBackground} from 'react-native';
 import PrimaryButton from '../components/PrimaryButton';
 import Colors from '../constants/colors';
+import Title from '../components/Title';
 type StartGameScreenProp={
     onPickedNumber: (itm:number)=>void,
 ////onChangeText={StartGameScreen.numberInputHandler} on line 33 
@@ -32,7 +33,7 @@ function StartGameScreen({onPickedNumber}:StartGameScreenProp){
     const marginTopDistance= height<400 ? 30 :100;
     return(
      <View style={[stlyes.rootContainer, {marginTop: marginTopDistance}]}>
-        <Text> Welcome to the Game!</Text>
+        <Title> Welcome to the Game</Title>
         <TextInput style={stlyes.numberInput} maxLength={3} keyboardType='phone-pad' keyboardAppearance='dark'  autoCapitalize='none' value={enteredNumber} onChangeText={numberInputHandler}></TextInput>
          <View style={stlyes.buttonsContainer}>
             <View style={stlyes.buttonContainer}>

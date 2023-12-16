@@ -7,6 +7,7 @@ const deviceWidth= Dimensions.get('window').width;
 let maxBounary =100;
 type GameOverScreenProps={
     userNumber:number,
+
     onGameOver: ()=>void,
     onStartNewGame:()=>void,
 
@@ -21,11 +22,11 @@ return (
         <View style ={stlyes.imageContainer}>
             <Image 
             style={stlyes.image}
-            source={require('../assets/icon.png')}
+            source={require('../assets/komi.png')}
             />
         </View>
         <Text style={stlyes.summaryText}>
-            Your phone needed <Text style= {stlyes.highlight}>(roundsNumber)</Text>{''}
+            Your phone needed <Text style= {stlyes.highlight}>(props.roundsNumber)</Text>{''}
             round to guess the number{' '}
             <Text style= {stlyes.highlight}>{props.userNumber}</Text>
         </Text>
