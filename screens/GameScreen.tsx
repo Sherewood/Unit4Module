@@ -52,7 +52,7 @@ function GameScreen ({userNumber,onGameOver}:GameScreenProps)
         else if(direction=='greater'){
             minBoundary=currentGuess+1;
         }
-        if (minBoundary ==userNumber && maxBounary == userNumber){console.log("congraturaisins");}
+        if (minBoundary ==userNumber || maxBounary == userNumber){console.log("congraturaisins");}
         else{
             const newGuess = generateRandomBetween (minBoundary,maxBounary,userNumber);
             setCurrentGuess(newGuess);
