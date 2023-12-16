@@ -57,13 +57,13 @@ const stlyes =StyleSheet.create({
         height :'100%',
     },
     summaryText:{
-        fontFamily: 'open-sans',
+        fontWeight: 'bold',
         fontSize:24,
         textAlign: 'center',
         marginBottom:24,
     },
     highlight:{
-        fontFamily:'open-sans-bold',
+        fontWeight:'bold',
         color:Colors.primary500,
 
     },

@@ -23,12 +23,12 @@ const styles =StyleSheet.create({
         padding:deviceWidth < 380 ? 12 : 24,
         borderRadius:8,
         margin:deviceWidth < 380 ? 12 : 24,
-        alignItmes:'center',
+        alignItems:'center',
         justifyContent:'center',
     },
     numberText: {
         color: Colors.accent500,
         fontSize:deviceWidth < 380 ? 28 : 36,
-        fontFamily: 'open-sans-bold'
+        fontWeight: 'bold'
     }
 });

@@ -49,13 +49,16 @@ function GameScreen ({userNumber,onGameOver}:GameScreenProps)
         if (direction== 'lower'){
             maxBounary= currentGuess;
         }
-        else{
+        else if(direction=='greater'){
             minBoundary=currentGuess+1;
         }
-        if (currentGuess ==userNumber){console.log("congraturaisins");}
-        const newGuess = generateRandomBetween (minBoundary,maxBounary,userNumber);
-        setCurrentGuess(newGuess);
-        console.log(minBoundary+ " "+ maxBounary);
+        if (minBoundary ==userNumber && maxBounary == userNumber){console.log("congraturaisins");}
+        else{
+            const newGuess = generateRandomBetween (minBoundary,maxBounary,userNumber);
+            setCurrentGuess(newGuess);
+            console.log(minBoundary+ " "+ maxBounary);
+        }
+
 
 
         return;
