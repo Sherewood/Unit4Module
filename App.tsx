@@ -8,12 +8,14 @@ import GameOverScreen from './screens/GameOverScreen';
 type AppProp={
   onPickedNumber:number,
   userNumber:number,
+  GuessRounds:number,
   
 }
 export default function App(props:AppProp) {
 
   const [userNumber, setUserNumber] =useState(0);
   const [gameIsOver, setGameIsOver]= useState(true);
+  const [guessRounds, setGuessRounds]=useState(0);
   function pickedNumberHandler(pickedNumber:number){
       console.log('ads');
       setUserNumber(pickedNumber);
@@ -25,21 +27,23 @@ export default function App(props:AppProp) {
   function PickedNumer(){
     setUserNumber
   }
-  function GameOver(){
+  function GameOver(numberOfRounds:number){
     setGameIsOver(true);
+    setGuessRounds(numberOfRounds);
   }
   function NewGame(){
     setGameIsOver(false);
     setUserNumber(0);
+    setGuessRounds(0);
   }
   let screen= <StartGameScreen onPickedNumber={pickedNumberHandler} />;
   if (userNumber){
    // console.log(userNumber);
-    screen= <GameScreen userNumber={userNumber} onGameOver={GameOver}/>
+    screen= <GameScreen  userNumber={userNumber} onGameOver={GameOver}/>
 
   }
   if (gameIsOver && userNumber){
-      screen= <GameOverScreen userNumber={userNumber} onGameOver={GameOver} onStartNewGame={NewGame}></GameOverScreen>
+      screen= <GameOverScreen  GuessRounds={guessRounds} userNumber={userNumber} onGameOver={GameOver} onStartNewGame={NewGame}></GameOverScreen>
   }
   return( 
     

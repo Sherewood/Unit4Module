@@ -7,9 +7,10 @@ const deviceWidth= Dimensions.get('window').width;
 let maxBounary =100;
 type GameOverScreenProps={
     userNumber:number,
-
-    onGameOver: ()=>void,
+    GuessRounds:number,
+    onGameOver: (arg0:number)=>void,
     onStartNewGame:()=>void,
+
 
 }
 function GameOverScreen (props:GameOverScreenProps)
@@ -26,8 +27,8 @@ return (
             />
         </View>
         <Text style={stlyes.summaryText}>
-            Your phone needed <Text style= {stlyes.highlight}>(props.roundsNumber)</Text>{''}
-            round to guess the number{' '}
+            Your phone needed <Text style= {stlyes.highlight}>{props.GuessRounds}</Text>{''}
+             rounds to guess the number{' '}
             <Text style= {stlyes.highlight}>{props.userNumber}</Text>
         </Text>
         <PrimaryButton pressHandler={props.onStartNewGame} >Start New Game </PrimaryButton>

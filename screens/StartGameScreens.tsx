@@ -1,4 +1,5 @@
 import {useState} from 'react';
+
 import {StyleSheet,TextInput, Alert,useWindowDimensions, View,Text,ImageBackground} from 'react-native';
 import PrimaryButton from '../components/PrimaryButton';
 import Colors from '../constants/colors';
@@ -36,6 +37,7 @@ function StartGameScreen({onPickedNumber}:StartGameScreenProp){
         <Title> Welcome to the Game</Title>
         <TextInput style={stlyes.numberInput} maxLength={3} keyboardType='phone-pad' keyboardAppearance='dark'  autoCapitalize='none' value={enteredNumber} onChangeText={numberInputHandler}></TextInput>
          <View style={stlyes.buttonsContainer}>
+            <Text > Guess a number </Text>
             <View style={stlyes.buttonContainer}>
             <PrimaryButton pressHandler={resetInputHandler} >RESET</PrimaryButton>
             </View>

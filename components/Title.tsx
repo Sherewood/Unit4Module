@@ -11,6 +11,10 @@ function Title(children:Titleprops){
 export default Title;
 
 const styles =StyleSheet.create({
+    screen:{
+        flex:1,
+        padding:24
+    },
     title:{
         fontSize:18,
         fontWeight:'bold',
